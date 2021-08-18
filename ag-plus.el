@@ -100,22 +100,22 @@ If no occurrances are found, hide the section.  Return the number of matches fou
     t))
 
 (defun ag-plus--filter (contain-regexp)
-  "Filter out all sections that don't CONTAIN-REGEXP."
+  "Filter out all sections that don't contain CONTAIN-REGEXP."
   (goto-char (point-min))
   (while (ag-plus--next-section)
     (let ((filename (ag-plus--section-file-name)))
       (unless (string-match contain-regexp filename)
         (ag-plus--hide-section)
-        (forward-line -1)))))
+        (forward-line -2)))))
 
 (defun ag-plus--remove (contain-regexp)
-  "Filter out all sections that don't CONTAIN-REGEXP."
+  "Filter out all sections that contain CONTAIN-REGEXP."
   (goto-char (point-min))
   (while (ag-plus--next-section)
     (let ((filename (ag-plus--section-file-name)))
       (when (string-match contain-regexp filename)
         (ag-plus--hide-section)
-        (forward-line -1)))))
+        (forward-line -2)))))
 
 (defun ag-plus--additive-search (search-regexp)
   "For each file in buffer do another serch."
